@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void navigate(View view) {
-        Intent locate = new Intent(this,NavigateActivity.class);
-        startActivity(locate);
+        Intent search = new Intent(this,SearchActivity.class);
+        startActivity(search);
     }
 }
