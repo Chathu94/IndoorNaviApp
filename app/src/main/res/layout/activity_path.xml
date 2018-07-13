@@ -5,5 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PathActivity">
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="386dp"
+        android:layout_height="511dp"
+        app:srcCompat="@drawable/floor_plan"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/DrawingImageView"
+        android:layout_width="387dp"
+        android:layout_height="513dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="66dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/ic_directions_black_24dp"
+        android:onClick="navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </android.support.constraint.ConstraintLayout>
