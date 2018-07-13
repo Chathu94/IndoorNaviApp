@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
     public void search(View view) {
         totxt = (EditText) findViewById(R.id.direction_header_to_text);
         fromtxt = (EditText) findViewById(R.id.direction_header_from_text);
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, PathActivity.class);
         // intent.putExtra("from",fromtxt.getText().toString());
 
         intent.putExtra("to", totxt.getText().toString());
@@ -56,4 +56,10 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public  void  goback(View view){
+        Intent goback = new Intent(this,HomeActivity.class);
+        startActivity(goback);
+    }
+
 }
