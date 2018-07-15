@@ -151,7 +151,7 @@ public class PathActivity extends AppCompatActivity {
 
                                     showLocation(x, y);
 
-                                    Toast.makeText(PathActivity.this, x + " " + y, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PathActivity.this, jsonObject.getDouble("x") + " " + jsonObject.getDouble("y"), Toast.LENGTH_SHORT).show();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
