@@ -13,8 +13,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailText;
     EditText passwordText;
 
-    private static final String Login_email = "admin@grr.la";
-    private static final String Login_password = "123";
+    private static final String Login_email = "a";
+    private static final String Login_password = "a";
 
 
     @Override
