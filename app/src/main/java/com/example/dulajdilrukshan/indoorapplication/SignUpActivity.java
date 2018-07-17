@@ -58,7 +58,12 @@ public class SignUpActivity extends AppCompatActivity {
         if (pass1.equals(pass2) && !email.isEmpty() && !pname.isEmpty() && !puername.isEmpty() && !pass1.isEmpty() && !pass2.isEmpty()) {
 
             Toast.makeText(getApplicationContext(), "Registered", Toast.LENGTH_LONG).show();
+
             Intent signUp = new Intent(this, LoginActivity.class);
+
+//          Sending data for other activities. You can call pname by using the key "isLogged"
+
+            signUp.putExtra("isLogged", pname);
             startActivity(signUp);
         }
 
