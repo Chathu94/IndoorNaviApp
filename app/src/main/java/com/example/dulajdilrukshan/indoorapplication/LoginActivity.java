@@ -7,15 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText emailText;
-    EditText passwordText;
-
     private static final String Login_email = "a";
     private static final String Login_password = "a";
-
+    EditText emailText;
+    EditText passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +62,18 @@ public class LoginActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+//       Retrieving Data from signUp page
 
+        Bundle bn = getIntent().getExtras();
+        String data = bn.getString("isLogged");
+
+//        To check the Data incoming .Toast is made
+
+        Toast.makeText(getApplicationContext(), data, Toast.LENGTH_LONG).show();
     }
 
     public void register(View view) {
-        Intent reg = new Intent(this,SignUpActivity.class);
+        Intent reg = new Intent(this, SignUpActivity.class);
         startActivity(reg);
     }
 }
