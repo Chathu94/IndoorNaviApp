@@ -114,19 +114,19 @@ public class PathActivity extends AppCompatActivity {
                             if (results.get(i).BSSID.equalsIgnoreCase("80:3f:5d:36:98:e5")) {
                                 rssi1 = results.get(i).level;
                                 bssid1 = results.get(i).BSSID;
-                                exp1 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi1)) / (10 * 1.8);
+                                exp1 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi1)) / (10 * 2.1);
                                 distance1 = Math.pow(10.0, exp1);
                             } else if (results.get(i).BSSID.equalsIgnoreCase("98:e7:f5:d1:0c:28")) {
                                 // AP 2
                                 rssi2 = results.get(i).level;
                                 bssid2 = results.get(i).BSSID;
-                                exp2 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi2)) / (10 * 1.8);
+                                exp2 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi2)) / (10 * 2.1);
                                 distance2 = Math.pow(10.0, exp2);
                             } else if (results.get(i).BSSID.equalsIgnoreCase("80:3f:5d:36:98:b8")) {
                                 // AP 3
                                 rssi3 = results.get(i).level;
                                 bssid3 = results.get(i).BSSID;
-                                exp3 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi3)) / (10 * 1.8);
+                                exp3 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi3)) / (10 * 2.1);
                                 distance3 = Math.pow(10.0, exp3);
                             }
 
