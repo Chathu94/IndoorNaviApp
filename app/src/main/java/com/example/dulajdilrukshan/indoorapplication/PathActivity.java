@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,8 @@ public class PathActivity extends AppCompatActivity {
     double d;
     double temp;
     double txpower = 32;
+    double val = 1.8;
+
 
 
     RequestQueue MyRequestQueue;
@@ -114,19 +117,19 @@ public class PathActivity extends AppCompatActivity {
                             if (results.get(i).BSSID.equalsIgnoreCase("80:3f:5d:36:98:e5")) {
                                 rssi1 = results.get(i).level;
                                 bssid1 = results.get(i).BSSID;
-                                exp1 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi1)) / (10 * 2.1);
+                                exp1 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi1)) / (10 * val);
                                 distance1 = Math.pow(10.0, exp1);
                             } else if (results.get(i).BSSID.equalsIgnoreCase("98:e7:f5:d1:0c:28")) {
                                 // AP 2
                                 rssi2 = results.get(i).level;
                                 bssid2 = results.get(i).BSSID;
-                                exp2 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi2)) / (10 * 2.1);
+                                exp2 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi2)) / (10 * val);
                                 distance2 = Math.pow(10.0, exp2);
                             } else if (results.get(i).BSSID.equalsIgnoreCase("80:3f:5d:36:98:b8")) {
                                 // AP 3
                                 rssi3 = results.get(i).level;
                                 bssid3 = results.get(i).BSSID;
-                                exp3 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi3)) / (10 * 2.1);
+                                exp3 = (27.55 - (20 * Math.log10(2412)) + Math.abs(rssi3)) / (10 * val);
                                 distance3 = Math.pow(10.0, exp3);
                             }
 
@@ -262,30 +265,30 @@ public class PathActivity extends AppCompatActivity {
     }
 
     public void lifttolibrary() {
-        paths.lifttoaudit(imagepaths());
+        paths.lifttolibrary(imagepaths());
 
     }
 
     public void lifttomscroom() {
 
-        paths.lifttoaudit(imagepaths());
+        paths.lifttomscroom(imagepaths());
 
 
     }
 
     public void lifttomultimedia() {
-        paths.lifttoaudit(imagepaths());
+        paths.lifttomultimedia(imagepaths());
     }
 
     public void lifttohallone() {
-        paths.lifttoaudit(imagepaths());
+        paths.lifttohallone(imagepaths());
 
 
     }
 
     public void lifttodccnlab() {
 
-        paths.lifttoaudit(imagepaths());
+        paths.lifttodccnlab(imagepaths());
 
     }
 
@@ -297,13 +300,13 @@ public class PathActivity extends AppCompatActivity {
 
     public void lifttoWashroom() {
 
-        paths.lifttoaudit(imagepaths());
+        paths.lifttoWashroom(imagepaths());
 
     }
 
     public void lifttocommomroom() {
 
-        paths.lifttoaudit(imagepaths());
+        paths.lifttocommomroom(imagepaths());
 
     }
 
@@ -311,5 +314,15 @@ public class PathActivity extends AppCompatActivity {
     public void navigation(View view) {
         Intent search = new Intent(this,SearchActivity.class);
         startActivity(search);
+    }
+
+    public void submit(View view) {
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
+        Double value =Double.parseDouble(txtsub.getText().toString());
+
+        val= value;
+
+        txtsub.setText("");
+
     }
 }
