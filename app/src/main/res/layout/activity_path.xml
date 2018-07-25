@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PathActivity">
+
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="386dp"
-        android:layout_height="511dp"
-        app:srcCompat="@drawable/floor_plan"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/floor_plan">
 
 
     </ImageView>
@@ -40,6 +43,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/txtval"
+        android:layout_width="67dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="108dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnsub"
+        android:layout_width="61dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="28dp"
+        android:onClick="submit"
+        android:text="sub"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button" />
 
 
 </android.support.constraint.ConstraintLayout>
