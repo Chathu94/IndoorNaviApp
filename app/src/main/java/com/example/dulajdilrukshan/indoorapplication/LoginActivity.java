@@ -1,8 +1,9 @@
 package com.example.dulajdilrukshan.indoorapplication;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +23,14 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+
+    private static final String TAG = "LoginActivity";
     StringRequest MyStringRequest;
     RequestQueue MyRequestQueue;
     String url;
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         MyRequestQueue = Volley.newRequestQueue(this);
 
         url = "http://ec2-18-191-196-123.us-east-2.compute.amazonaws.com:8081/login";
-
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mPreferences.edit();
     }
+
 
     public void pushData() {
         final EditText username = (EditText) findViewById(R.id.txtloginusername);
@@ -51,15 +59,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
 //                 Server Sends a Response as "true" if data is Success
-//                            int status ;
-//                            status = Integer.parseInt(response.toString());
+
                     if (response.equals("1")) {
-                    //    response.equals(success);
-                        Toast.makeText(getApplicationContext(), "Logged in ", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(getApplicationContext(), "" + pusername + " Logged In ", Toast.LENGTH_SHORT).show();
 
                     } else {
 
-                        Toast.makeText(getApplicationContext(), "Connection Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Connection to Server Failed", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     String err = e.getMessage();
@@ -93,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText username = (EditText) findViewById(R.id.txtloginusername);
         EditText password = (EditText) findViewById(R.id.txtloginpassword);
 
-        final String pusername = username.getText().toString().trim();
+        String pusername = username.getText().toString().trim();
         final String pass1 = password.getText().toString().trim();
 
         if (pusername.isEmpty()) {
@@ -106,14 +113,12 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (!pusername.isEmpty() && !pass1.isEmpty()) {
             pushData();
-            Intent home=new Intent(this,HomeActivity.class);
+            Intent home = new Intent(this, HomeActivity.class);
             startActivity(home);
+            mEditor.putString(getString(R.string.pusername), pusername);
+            mEditor.commit();
+
         }
-
-
-
-
-
 
 
     }
