@@ -35,8 +35,10 @@ public class HomeActivity extends AppCompatActivity {
 //        SharedPreferences.Editor editor = mPreferences.edit();
         String name = mPreferences.getString(getString(R.string.pusername), "");
 
-        Toast.makeText(getApplicationContext(),name, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),name, Toast.LENGTH_SHORT).show();
 
+
+        startActivity(new Intent(HomeActivity.this,PathActivity.class));
 
 //        Intent search = new Intent(this, SearchActivity.class);
 //        startActivity(search);
