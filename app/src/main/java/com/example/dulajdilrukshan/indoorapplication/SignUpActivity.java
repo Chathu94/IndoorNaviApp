@@ -1,6 +1,9 @@
 package com.example.dulajdilrukshan.indoorapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +38,16 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         MyRequestQueue = Volley.newRequestQueue(this);
 
+    }
+    //    Checking for internet connection Avaialable
+    public boolean isOnline(Context c) {
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+
+        if (ni != null && ni.isConnected())
+            return true;
+        else
+            return false;
     }
 
 
@@ -149,6 +162,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
         if (!pass2.equals(pass1)) {
             password2.setError("Passwords do not Match");
+        }
+        if (!isOnline(this)) {
+
+            Toast.makeText(getApplicationContext(), "Connection to Server Failed !.Check Internet Connection", Toast.LENGTH_LONG).show();
         }
         if (pass1.equals(pass2) && !email.isEmpty() && !pname.isEmpty()
                 && !puername.isEmpty() && !pass1.isEmpty()

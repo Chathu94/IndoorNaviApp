@@ -1,13 +1,18 @@
 package com.example.dulajdilrukshan.indoorapplication;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -28,10 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     StringRequest MyStringRequest;
     RequestQueue MyRequestQueue;
     String url;
+    boolean session = false;
+
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -40,6 +48,19 @@ public class LoginActivity extends AppCompatActivity {
         url = "http://ec2-18-191-196-123.us-east-2.compute.amazonaws.com:8081/login";
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
+
+
+    }
+//    Checking for internet connection Avaialable
+
+    public boolean isOnline(Context c) {
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+
+        if (ni != null && ni.isConnected())
+            return true;
+        else
+            return false;
     }
 
 
@@ -61,12 +82,13 @@ public class LoginActivity extends AppCompatActivity {
 //                 Server Sends a Response as "true" if data is Success
 
                     if (response.equals("1")) {
+                        session = true;
+                        enter();
+                        Toast.makeText(getApplicationContext(), "" + pusername + " Logged In ", Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(getApplicationContext(), "" + pusername + " Logged In ", Toast.LENGTH_SHORT).show();
+                    } else if (!session) {
 
-                    } else {
-
-                        Toast.makeText(getApplicationContext(), "Connection to Server Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
                     String err = e.getMessage();
@@ -111,10 +133,14 @@ public class LoginActivity extends AppCompatActivity {
             password.setError("Password Cannot be Empty");
             return;
         }
+
+        if (!isOnline(this)) {
+
+            Toast.makeText(getApplicationContext(), "Connection to Server Failed !.Check Internet Connection", Toast.LENGTH_LONG).show();
+        }
         if (!pusername.isEmpty() && !pass1.isEmpty()) {
+
             pushData();
-            Intent home = new Intent(this, HomeActivity.class);
-            startActivity(home);
             mEditor.putString(getString(R.string.pusername), pusername);
             mEditor.commit();
 
@@ -122,6 +148,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+    public void enter(){
+        Intent home = new Intent(this, HomeActivity.class);
+        startActivity(home);
+    }
+
 
     public void register(View view) {
         Intent reg = new Intent(this, SignUpActivity.class);
