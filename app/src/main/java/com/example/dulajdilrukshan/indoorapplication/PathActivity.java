@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.wifi.ScanResult;
@@ -17,6 +18,8 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,7 +53,8 @@ public class PathActivity extends AppCompatActivity {
     com.example.dulajdilrukshan.indoorapplication.Paths paths = new com.example.dulajdilrukshan.indoorapplication.Paths();
     private Timer mytimer;
     WifiManager wifiManager;
-
+    AutoCompleteTextView autoCompleteTextViewfrom;
+    AutoCompleteTextView autoCompleteTextViewto;
 
 
     double d;
@@ -77,6 +81,21 @@ public class PathActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path);
+
+        autoCompleteTextViewfrom = (AutoCompleteTextView) findViewById(R.id.direction_header_from_text);
+        autoCompleteTextViewto = (AutoCompleteTextView) findViewById(R.id.direction_header_to_text);
+
+        Resources resources=getResources();
+
+        String [] locations = resources.getStringArray(R.array.locations_array);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,locations);
+
+        autoCompleteTextViewfrom.setAdapter(adapter);
+        autoCompleteTextViewto.setAdapter(adapter);
+
+
 
         checkAndRequestPermissions();
 
@@ -363,4 +382,6 @@ public class PathActivity extends AppCompatActivity {
                 .create()
                 .show();
     }
+
+
 }

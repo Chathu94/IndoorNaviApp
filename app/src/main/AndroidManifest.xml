@@ -30,8 +30,7 @@
         <activity android:name=".NavigateActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".PathActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".PathActivity"></activity>
     </application>
 
 </manifest>

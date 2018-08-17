@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="locations_array">
+        <item>Auditorium</item>
+        <item>MSC Room</item>
+       <item>Lecture Hall 1</item>
+        <item>Multimedia Lab</item>
+        <item>Library</item>
+        <item>DCCN Lab</item>
+        <item>Lift Lobby</item>
+        <item>Staff Room</item>
+        <item>Wash Rooms</item>
+        <item>Common Room</item>
+    </string-array>
+
+
+
+
+
+</resources>
