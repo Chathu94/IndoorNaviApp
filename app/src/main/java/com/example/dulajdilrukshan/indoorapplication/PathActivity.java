@@ -81,7 +81,7 @@ public class PathActivity extends AppCompatActivity {
         checkAndRequestPermissions();
 
         MyRequestQueue = Volley.newRequestQueue(this);
-        audit();
+
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
@@ -214,41 +214,7 @@ public class PathActivity extends AppCompatActivity {
         }
     };
 
-    public void audit() {
 
-        String to, from;
-
-        Intent intent = getIntent();
-
-        to = intent.getStringExtra("to");
-        from = intent.getStringExtra("from");
-        // from=intent.getStringExtra("from");
-        if (to != null) {
-            if (from.equals("Lift Lobby")) {
-                if (to.equals("Auditorium")) {
-                    lifttoauditorium();
-                } else if (to.equals("MSC Room")) {
-                    lifttomscroom();
-                } else if (to.equals("Lecture Hall 1")) {
-                    lifttohallone();
-                } else if (to.equals("Multimedia Lab")) {
-                    lifttomultimedia();
-                } else if (to.equals("Library")) {
-                    lifttolibrary();
-                } else if (to.equals("Staff Room")) {
-                    lifttoStaffroom();
-                } else if (to.equals("Wash Rooms")) {
-                    lifttoWashroom();
-                } else if (to.equals("Common Room")) {
-                    lifttocommomroom();
-                } else if (to.equals("DCCN Lab")) {
-                    lifttodccnlab();
-                }
-            }
-
-        }
-
-    }
 
     public Canvas imagepaths() {
 
@@ -273,60 +239,28 @@ public class PathActivity extends AppCompatActivity {
         paths.showLocation(imagepaths(), x, y);
     }
 
-    public void lifttoauditorium() {
+    public void lifttoauditorium()
+    {
         float x = (float) 12.0 * 25;
         float y = (float) 15.0 * 25;
 
-        paths.lifttoaudit(imagepaths());
-
-
     }
 
-    public void lifttolibrary() {
-        paths.lifttolibrary(imagepaths());
-
-    }
-
-    public void lifttomscroom() {
-
-        paths.lifttomscroom(imagepaths());
 
 
-    }
-
-    public void lifttomultimedia() {
-        paths.lifttomultimedia(imagepaths());
-    }
-
-    public void lifttohallone() {
-        paths.lifttohallone(imagepaths());
 
 
-    }
 
-    public void lifttodccnlab() {
 
-        paths.lifttodccnlab(imagepaths());
 
-    }
 
-    public void lifttoStaffroom() {
 
-        paths.lifttoaudit(imagepaths());
 
-    }
 
-    public void lifttoWashroom() {
 
-        paths.lifttoWashroom(imagepaths());
 
-    }
 
-    public void lifttocommomroom() {
 
-        paths.lifttocommomroom(imagepaths());
-
-    }
 
 
     public void navigation(View view) {
