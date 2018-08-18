@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,8 @@ public class PathActivity extends AppCompatActivity {
     WifiManager wifiManager;
     AutoCompleteTextView autoCompleteTextViewfrom;
     AutoCompleteTextView autoCompleteTextViewto;
-
+    LinearLayout auditorium,multimedia,mscroom,hallone,library,dccn,lift,common,washroom,staff;
+    LinearLayout con1,con2,con3,con4,main,con5,con6,con7,con8,con9,con10;
 
     double d;
     double temp;
@@ -82,13 +84,35 @@ public class PathActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path);
 
+        auditorium=findViewById(R.id.auditorium);
+        multimedia=findViewById(R.id.multimedia);
+        mscroom=findViewById(R.id.mscroom);
+        hallone=findViewById(R.id.hallone);
+        library=findViewById(R.id.library);
+        dccn=findViewById(R.id.dccn);
+        lift=findViewById(R.id.lift);
+        common=findViewById(R.id.commonroom);
+        washroom=findViewById(R.id.washroom);
+        staff=findViewById(R.id.staffroom);
+        con1=findViewById(R.id.con1);
+        con2=findViewById(R.id.con2);
+
+        con4=findViewById(R.id.con4);
+        con5=findViewById(R.id.con5);
+        main=findViewById(R.id.maincon);
+        con6=findViewById(R.id.con6);
+        con7=findViewById(R.id.con7);
+        con8=findViewById(R.id.con8);
+        con9=findViewById(R.id.con9);
+        con10=findViewById(R.id.con10);
         autoCompleteTextViewfrom = (AutoCompleteTextView) findViewById(R.id.direction_header_from_text);
         autoCompleteTextViewto = (AutoCompleteTextView) findViewById(R.id.direction_header_to_text);
 
         Resources resources=getResources();
 
         String [] locations = resources.getStringArray(R.array.locations_array);
-
+        LinearLayout[]pathplaces={auditorium,multimedia,mscroom,hallone,library,dccn,lift,common,washroom,staff};
+        LinearLayout[]pathconnections={con1,con2,con4,con4,con5,main,con6,con7,con8,con9,con10};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,locations);
 
