@@ -38,6 +38,7 @@ import org.json.JSONObject;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -53,11 +54,13 @@ public class PathActivity extends AppCompatActivity {
     TextView error;
 
     com.example.dulajdilrukshan.indoorapplication.Paths paths = new com.example.dulajdilrukshan.indoorapplication.Paths();
+
     private Timer mytimer;
     WifiManager wifiManager;
     AutoCompleteTextView autoCompleteTextViewfrom;
     AutoCompleteTextView autoCompleteTextViewto;
-
+    LinearLayout Auditorium,Multimedia,MSCRoom,LectureHall1,Library,DCCNLab,LiftLobby,CommonRoom,WashRooms,StaffRoom;
+    LinearLayout Con1,Con2,Con4,Main,Con5,Con6,Con7,Con8,Con9,Con10;
 
     double d;
     double temp;
@@ -83,8 +86,27 @@ public class PathActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path);
-
-
+        com.example.dulajdilrukshan.indoorapplication.CreatePaths createPaths=new com.example.dulajdilrukshan.indoorapplication.CreatePaths();
+        Auditorium=findViewById(R.id.auditorium);
+        Multimedia=findViewById(R.id.multimedia);
+        MSCRoom=findViewById(R.id.mscroom);
+        LectureHall1=findViewById(R.id.hallone);
+        Library=findViewById(R.id.library);
+        DCCNLab=findViewById(R.id.dccn);
+        LiftLobby=findViewById(R.id.lift);
+        CommonRoom=findViewById(R.id.commonroom);
+        WashRooms=findViewById(R.id.washroom);
+        StaffRoom=findViewById(R.id.staffroom);
+        Con2=findViewById(R.id.con2);
+        Con4=findViewById(R.id.con4);
+        Con5=findViewById(R.id.con5);
+        Main=findViewById(R.id.maincon);
+        Con6=findViewById(R.id.con6);
+        Con7=findViewById(R.id.con7);
+        Con8=findViewById(R.id.con8);
+        Con9=findViewById(R.id.con9);
+        Con10=findViewById(R.id.con10);
+        Con1=findViewById(R.id.con1);
         autoCompleteTextViewfrom = (AutoCompleteTextView) findViewById(R.id.direction_header_from_text);
         autoCompleteTextViewto = (AutoCompleteTextView) findViewById(R.id.direction_header_to_text);
 
@@ -97,6 +119,7 @@ public class PathActivity extends AppCompatActivity {
 
         autoCompleteTextViewfrom.setAdapter(adapter);
         autoCompleteTextViewto.setAdapter(adapter);
+
 
 
 
@@ -238,7 +261,7 @@ public class PathActivity extends AppCompatActivity {
 
 
 
-    public Canvas imagepaths() {
+    public Canvas showlocation() {
 
         drawingImageView = (ImageView) this.findViewById(R.id.DrawingImageView);
 
@@ -277,23 +300,22 @@ public class PathActivity extends AppCompatActivity {
 
     public void showLocation(float x, float y) {
 
-        paths.showLocation(imagepaths(), x, y);
-    }
-
-    public void lifttoauditorium()
-    {
-        float x = (float) 12.0 * 25;
-        float y = (float) 15.0 * 25;
-
+        paths.showLocation(showlocation(), x, y);
     }
 
 
 
+
+//Gowtham-ShowPaths
     public void navigation(View view) {
-         CreatePaths cp=new CreatePaths();
-//       cp.showpaths(createpaths(),"Auditorium","Multimedia");
-        EditText  txtsub = (EditText) findViewById(R.id.txtval);
-        cp.text(txtsub);
+
+       //createPaths.showpaths(createpaths(),"Auditorium","Multimedia");
+       // CreatePaths cp=new CreatePaths();
+        //EditText  txtsub = (EditText) findViewById(R.id.txtval);
+
+
+        showpaths();
+        //cp.text(txtsub,x);
 
     }
 
@@ -306,6 +328,101 @@ public class PathActivity extends AppCompatActivity {
         txtsub.setText("");
 
     }
+
+    public void showpaths()
+    {
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
+        CreatePaths cp=new CreatePaths();
+        float auditoriumX,multimediaX,mscroomX,libraryX,lecthall1X,dccnX,liftX,commonX,staffX,washX,
+                auditoriumY,multimediaY,mscroomY,libraryY,lecthall1Y,dccnY,liftY,commonY,staffY,washY;
+        float con1,con2,con4,con5,con6,con7,con8,con9,con10,main;
+        int auditoriumlocationarray[]=new int[2];
+        int multimedialocationarray[]=new int[2];
+        int mscroomlocationarray[]=new int[2];
+        int librarylocationarray[]=new int[2];
+        int lecturehall1locationarray[]=new int[2];
+        int dccnlablocationarray[]=new int[2];
+        int liftlocationarray[]=new int[2];
+        int commonroomlocationarray[]=new int[2];
+        int staffroomlocationarray[]=new int[2];
+        int washroomlocationarray[]=new int[2];
+
+        int con1array[]=new int[2];
+        int con2array[]=new int[2];
+        int con4array[]=new int[2];
+        int con5array[]=new int[2];
+        int con6array[]=new int[2];
+        int con7array[]=new int[2];
+        int con8array[]=new int[2];
+        int con9array[]=new int[2];
+        int con10array[]=new int[2];
+        int mainarray[]=new int[2];
+
+
+        Auditorium.getLocationOnScreen(auditoriumlocationarray);
+        Multimedia.getLocationOnScreen(multimedialocationarray);
+        MSCRoom.getLocationOnScreen(mscroomlocationarray);
+        Library.getLocationOnScreen(librarylocationarray);
+        LectureHall1.getLocationOnScreen(lecturehall1locationarray);
+        DCCNLab.getLocationOnScreen(dccnlablocationarray);
+        LiftLobby.getLocationOnScreen(liftlocationarray);
+        CommonRoom.getLocationOnScreen(commonroomlocationarray);
+        StaffRoom.getLocationOnScreen(staffroomlocationarray);
+        WashRooms.getLocationOnScreen(washroomlocationarray);
+
+        Con1.getLocationOnScreen(con1array);
+        Con2.getLocationOnScreen(con2array);
+        Con4.getLocationOnScreen(con4array);
+        Con5.getLocationOnScreen(con5array);
+        Con6.getLocationOnScreen(con6array);
+        Con7.getLocationOnScreen(con7array);
+        Con8.getLocationOnScreen(con8array);
+        Con9.getLocationOnScreen(con9array);
+        Con10.getLocationOnScreen(con10array);
+        Main.getLocationOnScreen(mainarray);
+
+
+       auditoriumX= auditoriumlocationarray[0];
+       multimediaX=multimedialocationarray[0];
+       mscroomX=mscroomlocationarray[0];
+       libraryX=librarylocationarray[0];
+       lecthall1X=lecturehall1locationarray[0];
+       dccnX=dccnlablocationarray[0];
+       liftX=liftlocationarray[0];
+       commonX=commonroomlocationarray[0];
+       staffX=staffroomlocationarray[0];
+       washX=washroomlocationarray[0];
+
+        auditoriumY= auditoriumlocationarray[1];
+        multimediaY=multimedialocationarray[1];
+        mscroomY=mscroomlocationarray[1];
+        libraryY=librarylocationarray[1];
+        lecthall1Y=lecturehall1locationarray[1];
+        dccnY=dccnlablocationarray[1];
+        liftY=liftlocationarray[1];
+        commonY=commonroomlocationarray[1];
+        staffY=staffroomlocationarray[1];
+        washY=washroomlocationarray[1];
+
+
+       float locationarrays[][]=
+               {
+                   {auditoriumX,auditoriumY}, {multimediaX,multimediaY},{mscroomX,mscroomY},
+                       {libraryX,libraryY},{lecthall1X,lecthall1Y},{dccnX,dccnY},{liftX,liftY},
+                       {commonX,commonY},{staffX,staffY},{washX,washY}
+
+               };
+
+
+
+
+
+
+
+
+       cp.text(txtsub,len[0][0],len[0][1]);
+    }
+
 
 
     // SamWickramarachchi - Request Access Permissions Device Location
