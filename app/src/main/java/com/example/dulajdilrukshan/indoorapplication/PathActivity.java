@@ -49,15 +49,15 @@ import java.util.TimerTask;
 
 
 public class PathActivity extends AppCompatActivity {
-    ImageView drawingImageView;
+    ImageView drawingImageView,creatpath;
     TextView error;
+
     com.example.dulajdilrukshan.indoorapplication.Paths paths = new com.example.dulajdilrukshan.indoorapplication.Paths();
     private Timer mytimer;
     WifiManager wifiManager;
     AutoCompleteTextView autoCompleteTextViewfrom;
     AutoCompleteTextView autoCompleteTextViewto;
-    LinearLayout auditorium,multimedia,mscroom,hallone,library,dccn,lift,common,washroom,staff;
-    LinearLayout con1,con2,con3,con4,main,con5,con6,con7,con8,con9,con10;
+
 
     double d;
     double temp;
@@ -84,35 +84,14 @@ public class PathActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path);
 
-        auditorium=findViewById(R.id.auditorium);
-        multimedia=findViewById(R.id.multimedia);
-        mscroom=findViewById(R.id.mscroom);
-        hallone=findViewById(R.id.hallone);
-        library=findViewById(R.id.library);
-        dccn=findViewById(R.id.dccn);
-        lift=findViewById(R.id.lift);
-        common=findViewById(R.id.commonroom);
-        washroom=findViewById(R.id.washroom);
-        staff=findViewById(R.id.staffroom);
-        con1=findViewById(R.id.con1);
-        con2=findViewById(R.id.con2);
 
-        con4=findViewById(R.id.con4);
-        con5=findViewById(R.id.con5);
-        main=findViewById(R.id.maincon);
-        con6=findViewById(R.id.con6);
-        con7=findViewById(R.id.con7);
-        con8=findViewById(R.id.con8);
-        con9=findViewById(R.id.con9);
-        con10=findViewById(R.id.con10);
         autoCompleteTextViewfrom = (AutoCompleteTextView) findViewById(R.id.direction_header_from_text);
         autoCompleteTextViewto = (AutoCompleteTextView) findViewById(R.id.direction_header_to_text);
 
         Resources resources=getResources();
 
         String [] locations = resources.getStringArray(R.array.locations_array);
-        LinearLayout[]pathplaces={auditorium,multimedia,mscroom,hallone,library,dccn,lift,common,washroom,staff};
-        LinearLayout[]pathconnections={con1,con2,con4,con4,con5,main,con6,con7,con8,con9,con10};
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,locations);
 
@@ -277,6 +256,25 @@ public class PathActivity extends AppCompatActivity {
         return canvas;
     }
 
+    public Canvas createpaths() {
+
+        creatpath = (ImageView) this.findViewById(R.id.pathImageView);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+
+
+        Bitmap bitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        creatpath.setImageBitmap(bitmap);
+        return canvas;
+    }
+
+
     public void showLocation(float x, float y) {
 
         paths.showLocation(imagepaths(), x, y);
@@ -291,33 +289,21 @@ public class PathActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void navigation(View view) {
-        Intent search = new Intent(this,SearchActivity.class);
-        startActivity(search);
+         CreatePaths cp=new CreatePaths();
+//       cp.showpaths(createpaths(),"Auditorium","Multimedia");
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
+        cp.text(txtsub);
+
     }
 
     public void submit(View view) {
-        EditText  txtsub = (EditText) findViewById(R.id.txtval);
-        Double value =Double.parseDouble(txtsub.getText().toString());
+        //EditText  txtsub = (EditText) findViewById(R.id.txtval);
+        //Double value =Double.parseDouble(txtsub.getText().toString());
 
-        val= value;
+       // val= value;
 
-        txtsub.setText("");
+       // txtsub.setText("");
 
     }
 
