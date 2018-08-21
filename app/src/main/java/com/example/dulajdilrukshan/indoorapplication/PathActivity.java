@@ -298,12 +298,12 @@ public class PathActivity extends AppCompatActivity {
     }
 
     public void submit(View view) {
-        //EditText  txtsub = (EditText) findViewById(R.id.txtval);
-        //Double value =Double.parseDouble(txtsub.getText().toString());
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
+        Double value =Double.parseDouble(txtsub.getText().toString());
 
-       // val= value;
+        val= value;
 
-       // txtsub.setText("");
+        txtsub.setText("");
 
     }
 
