@@ -17,44 +17,25 @@ import java.util.Arrays;
 
 public class CreatePaths{
 
-    public LinearLayout Auditorium,Multimedia,MSCRoom,LectureHall1,Library,DCCNLab,LiftLobby,CommonRoom,WashRooms,StaffRoom;
-    public LinearLayout con1,con2,con4,main,con5,con6,con7,con8,con9,con10;
-    String to, from;
-    float x=0,y=0,x1=0,y1=0,x2=0,y2=0,x3=0,y3=0,x4=0,y4=0,x5=0,y5=0,
-            x6=0,y6=0,x7=0,y7=0,x8=0,y8=0,x9=0,y9,x10=0,
-            y10=0,x11=0,y11=0,x12=0,y12=0;
+//    public LinearLayout Auditorium,Multimedia,MSCRoom,LectureHall1,Library,DCCNLab,LiftLobby,CommonRoom,WashRooms,StaffRoom;
+//    public LinearLayout con1,con2,con4,main,con5,con6,con7,con8,con9,con10;
+
+    int startlocationindex=0,destinationindex=0;
 
     PathActivity location=new PathActivity();
 
 
-    ArrayList<LinearLayout>paths=new ArrayList<>();
-
-    ArrayList<LinearLayout>auditoriumpaths=new ArrayList<>();
-    ArrayList<LinearLayout>multimediapaths=new ArrayList<>();
-    ArrayList<LinearLayout>mscpaths=new ArrayList<>();
-    ArrayList<LinearLayout>hallonepaths=new ArrayList<>();
-    ArrayList<LinearLayout>librarypaths=new ArrayList<>();
-    ArrayList<LinearLayout>dccnpaths=new ArrayList<>();
-    ArrayList<LinearLayout>liftpaths=new ArrayList<>();
-    ArrayList<LinearLayout>commonpaths=new ArrayList<>();
-    ArrayList<LinearLayout>washroompaths=new ArrayList<>();
-    ArrayList<LinearLayout>staffroompaths=new ArrayList<>();
+    ArrayList<String>paths=new ArrayList<>();
+    ArrayList<String>path1=new ArrayList<>();
+    ArrayList<String>path2=new ArrayList<>();
+    ArrayList<String>auditoriumtomain=new ArrayList<>();
+    ArrayList<String>maintostaff=new ArrayList<>();
+    ArrayList<String>locationindex=new ArrayList<>();
+    ArrayList<String>connectionindex=new ArrayList<>();
 
 
-
-
-    public void showpaths(Canvas canvas,String startlocation, String destination,float st,float yt)
+    public void drawingpaths(Canvas canvas)
     {
-
-
-        auditoriumpaths=new ArrayList<>(Arrays.asList(Auditorium,con1,Multimedia,con2,MSCRoom,con2,LectureHall1,con4,Library,
-                main,con5,LiftLobby,main,DCCNLab,con5,con6,con7,con9,CommonRoom,con10,WashRooms,con7,con8,StaffRoom));
-
-        multimediapaths=new ArrayList<>(Arrays.asList(Multimedia,con1,Auditorium,con2,MSCRoom,LectureHall1,con4,Library,
-                main,con5,LiftLobby,main,DCCNLab,con5,con6,con7,con9,CommonRoom,con10,WashRooms,con7,con8,StaffRoom));
-
-
-
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
@@ -63,16 +44,133 @@ public class CreatePaths{
         paint.setStrokeWidth(5);
 
 
-        canvas.drawLine(209f,640f+20, st, yt, paint);
+        //canvas.drawLine(209f,640f+20, st, yt, paint);
         //canvas.drawLine(x1, y1 - 50, x2, y2 - 50, paint);
         //canvas.drawLine(x2, y2 - 50, x3, y3 - 50, paint);
 
     }
 
-    public void  text(TextView textView,float x,float y)
+    public void createpath(String startlocation, String destination,float locationarray[][],float connectionarray[][])
     {
+        auditoriumtomain=new ArrayList<>(Arrays.asList("Auditorium","con1","Multimedia","con2","MSCRoom","con2","LectureHall1","con4"
+                ,"Library","conMain"));
 
-       textView.setText(" "+x+" "+y);
+        maintostaff=new ArrayList<>(Arrays.asList("conMain","DCCNLab","con5","Lift","con5","con6","con7","con9",
+                "CommonRoom","con7","con9","con10","WashRoom","con7","con8","StaffRoom"));
+
+        locationindex=new ArrayList<>(Arrays.asList("Auditorium","Multimedia","MSCRoom","Library","LectureHallOne","DCCNLab",
+                "Lift","CommonRoom","StaffRoom","WashRoom"));
+
+        connectionindex=new ArrayList<>(Arrays.asList("con1","con2","con4","con5","con6","con7","con8","con9","con10","mainCon"));
+
+
+            for (int j = 0; j < auditoriumtomain.size(); j++)
+            {
+                if (auditoriumtomain.get(j).equalsIgnoreCase(startlocation))
+                {
+                    {
+                        for (int i = 0; i < auditoriumtomain.size(); i++) {
+                            if (auditoriumtomain.get(i).equalsIgnoreCase(startlocation))
+                            {
+                                startlocationindex = i;
+                            }
+                            if (auditoriumtomain.get(i).equalsIgnoreCase(destination))
+                            {
+                                destinationindex = i;
+                            }
+                        }
+                    }
+                    if (startlocation.equalsIgnoreCase("Auditorium"))
+                    {
+                        for (int i = startlocationindex; i <= destinationindex; i++)
+                        {
+                            path1.add(auditoriumtomain.get(i));
+                        }
+                    } else if (!startlocation.equalsIgnoreCase("Auditorium"))
+                    {
+                        for (int i = startlocationindex; i >= destinationindex; i--)
+                        {
+                            path1.add(auditoriumtomain.get(i));
+                        }
+                    }
+                }
+                else
+                {
+
+                    for (int k=0;k<maintostaff.size();k++)
+                    {
+                        if(maintostaff.get(k).equalsIgnoreCase(startlocation))
+                        {
+                            {
+                                for(int l=0;l<maintostaff.size();l++)
+                                {
+                                    if(maintostaff.get(l).equalsIgnoreCase(startlocation))
+                                    {
+                                        startlocationindex=l;
+                                    }
+                                    if(maintostaff.get(l).equalsIgnoreCase(destination))
+                                    {
+                                        destinationindex=l;
+                                    }
+
+                                }
+                            }
+                            if(startlocation.equalsIgnoreCase("DCCNLab"))
+                            {
+                                path2.add("conMain");
+                                for(int a=startlocationindex+1;a<=destinationindex;a++)
+                                {
+
+                                    path2.add(maintostaff.get(a));
+                                }
+                            }
+                            else if(!startlocation.equalsIgnoreCase("DCCNLab"))
+                            {
+                                for (int b=startlocationindex+1;b>=destinationindex;b--)
+                                {
+                                    path2.add(maintostaff.get(b));
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        for(int i=0;i<=path1.size();i++)
+        {
+            if(path1.size()>0)
+            {
+                paths.add(path1.get(i));
+                if(path2.size()>0)
+                {
+                    for(i=i+path2.size();i<path2.size();i++)
+                    {
+                        paths.add(path2.get(i));
+                    }
+                }
+            }
+            else
+            {
+                paths.add(path2.get(i));
+                if(path1.size()>0)
+                {
+                    for(i=i+path1.size();i<path1.size();i++)
+                    {
+                        paths.add(path1.get(i));
+                    }
+                }
+            }
+        }
+
+    }
+
+    public void  text(TextView textView)
+    {
+        float locationarray[][]=new float[0][1];
+        float connectionarray[][]=new float[0][1];
+        createpath("Library","CommonRoom",locationarray,connectionarray);
+       textView.setText(" "+paths.get(0));
     }
 
 }

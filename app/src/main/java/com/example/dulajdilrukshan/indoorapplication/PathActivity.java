@@ -3,7 +3,6 @@ package com.example.dulajdilrukshan.indoorapplication;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -36,9 +35,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -54,7 +51,7 @@ public class PathActivity extends AppCompatActivity {
     TextView error;
 
     com.example.dulajdilrukshan.indoorapplication.Paths paths = new com.example.dulajdilrukshan.indoorapplication.Paths();
-
+    public float locationarrays[][],connectionarray[][];
     private Timer mytimer;
     WifiManager wifiManager;
     AutoCompleteTextView autoCompleteTextViewfrom;
@@ -310,12 +307,12 @@ public class PathActivity extends AppCompatActivity {
     public void navigation(View view) {
 
        //createPaths.showpaths(createpaths(),"Auditorium","Multimedia");
-       // CreatePaths cp=new CreatePaths();
-        //EditText  txtsub = (EditText) findViewById(R.id.txtval);
+       CreatePaths cp=new CreatePaths();
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
 
 
         showpaths();
-        //cp.text(txtsub,x);
+        cp.text(txtsub);
 
     }
 
@@ -357,7 +354,7 @@ public class PathActivity extends AppCompatActivity {
         int con8array[]=new int[2];
         int con9array[]=new int[2];
         int con10array[]=new int[2];
-        int mainarray[]=new int[2];
+        int conMainarray[]=new int[2];
 
 
         Auditorium.getLocationOnScreen(auditoriumlocationarray);
@@ -380,7 +377,7 @@ public class PathActivity extends AppCompatActivity {
         Con8.getLocationOnScreen(con8array);
         Con9.getLocationOnScreen(con9array);
         Con10.getLocationOnScreen(con10array);
-        Main.getLocationOnScreen(mainarray);
+        Main.getLocationOnScreen(conMainarray);
 
         //X coordinates
         auditoriumX= auditoriumlocationarray[0];
@@ -402,7 +399,7 @@ public class PathActivity extends AppCompatActivity {
         con8X=con8array[0];
         con9X=con9array[0];
         con10X=con10array[0];
-        mainX=mainarray[0];
+        mainX=conMainarray[0];
 
 
 
@@ -430,11 +427,11 @@ public class PathActivity extends AppCompatActivity {
         con8Y=con8array[1];
         con9Y=con9array[1];
         con10Y=con10array[1];
-        mainY=mainarray[1];
+        mainY=conMainarray[1];
 
 
 
-       float locationarrays[][]=
+       locationarrays=new float[][]
                {
                    {auditoriumX,auditoriumY}, {multimediaX,multimediaY},{mscroomX,mscroomY},
                        {libraryX,libraryY},{lecthall1X,lecthall1Y},{dccnX,dccnY},{liftX,liftY},
@@ -442,7 +439,7 @@ public class PathActivity extends AppCompatActivity {
 
                };
 
-       float connectionarray[][]=
+      connectionarray=new float[][]
                {
                        {con1X,con1Y},{con2X,con2Y},{con4X,con4Y},{con5X,con5Y},
                        {con6X,con6Y},{con7X,con7Y},{con8X,con8Y},{con9X,con9Y},
@@ -454,7 +451,7 @@ public class PathActivity extends AppCompatActivity {
 
 
 
-       cp.text(txtsub,len[0][0],len[0][1]);
+
     }
 
 
