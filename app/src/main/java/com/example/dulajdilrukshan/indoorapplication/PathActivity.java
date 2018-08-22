@@ -335,7 +335,8 @@ public class PathActivity extends AppCompatActivity {
         CreatePaths cp=new CreatePaths();
         float auditoriumX,multimediaX,mscroomX,libraryX,lecthall1X,dccnX,liftX,commonX,staffX,washX,
                 auditoriumY,multimediaY,mscroomY,libraryY,lecthall1Y,dccnY,liftY,commonY,staffY,washY;
-        float con1,con2,con4,con5,con6,con7,con8,con9,con10,main;
+        float con1X,con2X,con4X,con5X,con6X,con7X,con8X,con9X,con10X,mainX,
+                con1Y,con2Y,con4Y,con5Y,con6Y,con7Y,con8Y,con9Y,con10Y,mainY;
         int auditoriumlocationarray[]=new int[2];
         int multimedialocationarray[]=new int[2];
         int mscroomlocationarray[]=new int[2];
@@ -381,18 +382,34 @@ public class PathActivity extends AppCompatActivity {
         Con10.getLocationOnScreen(con10array);
         Main.getLocationOnScreen(mainarray);
 
+        //X coordinates
+        auditoriumX= auditoriumlocationarray[0];
+        multimediaX=multimedialocationarray[0];
+        mscroomX=mscroomlocationarray[0];
+        libraryX=librarylocationarray[0];
+        lecthall1X=lecturehall1locationarray[0];
+        dccnX=dccnlablocationarray[0];
+        liftX=liftlocationarray[0];
+        commonX=commonroomlocationarray[0];
+        staffX=staffroomlocationarray[0];
+        washX=washroomlocationarray[0];
+        con1X=con1array[0];
+        con2X=con2array[0];
+        con4X=con4array[0];
+        con5X=con5array[0];
+        con6X=con6array[0];
+        con7X=con7array[0];
+        con8X=con8array[0];
+        con9X=con9array[0];
+        con10X=con10array[0];
+        mainX=mainarray[0];
 
-       auditoriumX= auditoriumlocationarray[0];
-       multimediaX=multimedialocationarray[0];
-       mscroomX=mscroomlocationarray[0];
-       libraryX=librarylocationarray[0];
-       lecthall1X=lecturehall1locationarray[0];
-       dccnX=dccnlablocationarray[0];
-       liftX=liftlocationarray[0];
-       commonX=commonroomlocationarray[0];
-       staffX=staffroomlocationarray[0];
-       washX=washroomlocationarray[0];
 
+
+
+
+
+       //Y Coordinates
         auditoriumY= auditoriumlocationarray[1];
         multimediaY=multimedialocationarray[1];
         mscroomY=mscroomlocationarray[1];
@@ -404,6 +421,18 @@ public class PathActivity extends AppCompatActivity {
         staffY=staffroomlocationarray[1];
         washY=washroomlocationarray[1];
 
+        con1Y=con1array[1];
+        con2Y=con2array[1];
+        con4Y=con4array[1];
+        con5Y=con5array[1];
+        con6Y=con6array[1];
+        con7Y=con7array[1];
+        con8Y=con8array[1];
+        con9Y=con9array[1];
+        con10Y=con10array[1];
+        mainY=mainarray[1];
+
+
 
        float locationarrays[][]=
                {
@@ -413,7 +442,12 @@ public class PathActivity extends AppCompatActivity {
 
                };
 
-
+       float connectionarray[][]=
+               {
+                       {con1X,con1Y},{con2X,con2Y},{con4X,con4Y},{con5X,con5Y},
+                       {con6X,con6Y},{con7X,con7Y},{con8X,con8Y},{con9X,con9Y},
+                       {con10X,con10Y},{mainX,mainY}
+               };
 
 
 
