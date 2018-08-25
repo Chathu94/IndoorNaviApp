@@ -315,19 +315,20 @@ public class PathActivity extends AppCompatActivity {
     public void navigation(View view) {
 
 //      // createPaths.showpaths(createpaths(),"Auditorium","Multimedia");
-     CreatePaths cp=new CreatePaths();
+        CreatePaths cp=new CreatePaths();
         EditText  txtsub = (EditText) findViewById(R.id.txtval);
 //        //int index=0;
 //
-      showpaths();
-      cp.text(txtsub,index);
+        showpaths();
+        cp.createpath(autoCompleteTextViewfrom.getText().toString(),autoCompleteTextViewto.getText().toString());
+        cp.drawingpaths(createpaths(),locationarrays,connectionarray);
+
+//        txtsub.setText(locationarrays[0][0]+" "+locationarrays[0][1]);
 
 
 
 
-
-         index=index+1;
-//            txtsub.setText(index+"");
+//
         }
 
 
@@ -463,6 +464,7 @@ public class PathActivity extends AppCompatActivity {
                        {con6X,con6Y},{con7X,con7Y},{con8X,con8Y},{con9X,con9Y},
                        {con10X,con10Y},{mainX,mainY}
                };
+
 
 
 

@@ -35,7 +35,7 @@ public class CreatePaths{
     ArrayList<String>connectionindex=new ArrayList<>();
 
 
-    public void drawingpaths(Canvas canvas)
+    public void drawingpaths(Canvas canvas,float locationarray[][],float connectionarray[][])
     {
 
         Paint paint = new Paint();
@@ -49,9 +49,18 @@ public class CreatePaths{
         //canvas.drawLine(x1, y1 - 50, x2, y2 - 50, paint);
         //canvas.drawLine(x2, y2 - 50, x3, y3 - 50, paint);
 
+
+        for(int i=0;i<paths.size();i++)
+        {
+            for (int j=0;j<=i;j++)
+            {
+                canvas.drawLine(locationarray[i][j],);
+            }
+        }
+
     }
 
-    public void createpath(String startlocation, String destination,float locationarray[][],float connectionarray[][])
+    public void createpath(String startlocation, String destination)
     {
         auditoriumtomain=new ArrayList<>(Arrays.asList("con1","Auditorium","con1","Multimedia","con1","con2","MSCRoom","con2","LectureHall1","con2"
                 ,"con4","Library","con4"));
@@ -59,10 +68,7 @@ public class CreatePaths{
         maintostaff=new ArrayList<>(Arrays.asList("conMain","DCCNLab","conMain","con5","Lift","con5","con6","con7","con9",
                 "CommonRoom","con7","con9","con10","WashRoom","con7","con8","StaffRoom"));
 
-        locationindex=new ArrayList<>(Arrays.asList("Auditorium","Multimedia","MSCRoom","Library","LectureHallOne","DCCNLab",
-                "Lift","CommonRoom","StaffRoom","WashRoom"));
 
-        connectionindex=new ArrayList<>(Arrays.asList("con1","con2","con4","con5","con6","con7","con8","con9","con10","mainCon"));
 
         //From Auditorium to Library
             for (int j = 0; j < auditoriumtomain.size(); j++)
@@ -202,10 +208,6 @@ public class CreatePaths{
         }
 
 
-
-
-
-
             paths.addAll(path1);
             paths.addAll(path2);
 
@@ -214,11 +216,18 @@ public class CreatePaths{
 
     }
 
+    public void findindex()
+    {
+        locationindex=new ArrayList<>(Arrays.asList("Auditorium","Multimedia","MSCRoom","Library","LectureHallOne","DCCNLab",
+                "Lift","CommonRoom","StaffRoom","WashRoom"));
+
+        connectionindex=new ArrayList<>(Arrays.asList("con1","con2","con4","con5","con6","con7","con8","con9","con10","mainCon"));
+    }
     public void  text(TextView textView,int index)
     {
         float locationarray[][]=new float[0][1];
         float connectionarray[][]=new float[0][1];
-        createpath("Library","CommonRoom",locationarray,connectionarray);
+        createpath("Library","CommonRoom");
 
         {
             textView.setText(" "+paths.get(index));
