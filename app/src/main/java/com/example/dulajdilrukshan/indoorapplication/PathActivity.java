@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,6 +50,8 @@ import java.util.TimerTask;
 public class PathActivity extends AppCompatActivity {
     ImageView drawingImageView,creatpath;
     TextView error;
+    Button navi;
+    int index=0;
 
     com.example.dulajdilrukshan.indoorapplication.Paths paths = new com.example.dulajdilrukshan.indoorapplication.Paths();
     public float locationarrays[][],connectionarray[][];
@@ -116,6 +119,9 @@ public class PathActivity extends AppCompatActivity {
 
         autoCompleteTextViewfrom.setAdapter(adapter);
         autoCompleteTextViewto.setAdapter(adapter);
+        navi=findViewById(R.id.button);
+
+
 
 
 
@@ -304,17 +310,29 @@ public class PathActivity extends AppCompatActivity {
 
 
 //Gowtham-ShowPaths
+
+
     public void navigation(View view) {
 
-       //createPaths.showpaths(createpaths(),"Auditorium","Multimedia");
-       CreatePaths cp=new CreatePaths();
+//      // createPaths.showpaths(createpaths(),"Auditorium","Multimedia");
+     CreatePaths cp=new CreatePaths();
         EditText  txtsub = (EditText) findViewById(R.id.txtval);
+//        //int index=0;
+//
+      showpaths();
+      cp.text(txtsub,index);
 
 
-        showpaths();
-        cp.text(txtsub);
 
-    }
+
+
+         index=index+1;
+//            txtsub.setText(index+"");
+        }
+
+
+
+
 
     public void submit(View view) {
         EditText  txtsub = (EditText) findViewById(R.id.txtval);
