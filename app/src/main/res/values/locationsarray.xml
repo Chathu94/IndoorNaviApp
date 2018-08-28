@@ -2,15 +2,15 @@
 <resources>
     <string-array name="locations_array">
         <item>Auditorium</item>
-        <item>MSC Room</item>
-       <item>Lecture Hall 1</item>
-        <item>Multimedia Lab</item>
+        <item>MSCRoom</item>
+       <item>LectureHall1</item>
+        <item>MultimediaLab</item>
         <item>Library</item>
-        <item>DCCN Lab</item>
-        <item>Lift Lobby</item>
-        <item>Staff Room</item>
-        <item>Wash Rooms</item>
-        <item>Common Room</item>
+        <item>DCCNLab</item>
+        <item>LiftLobby</item>
+        <item>StaffRoom</item>
+        <item>WashRoom</item>
+        <item>CommonRoom</item>
     </string-array>
 
 
