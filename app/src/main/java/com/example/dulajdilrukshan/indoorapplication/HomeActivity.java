@@ -10,6 +10,8 @@ import android.view.View;
 
 import android.widget.Toast;
 
+import java.nio.file.Path;
+
 public class HomeActivity extends AppCompatActivity {
 
 
@@ -38,7 +40,9 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),name, Toast.LENGTH_SHORT).show();
 
 
-//        Intent search = new Intent(this, SearchActivity.class);
-//        startActivity(search);
+        Intent path = new Intent(this, PathActivity.class);
+        startActivity(path);
     }
+
+
 }

@@ -3,8 +3,8 @@ package com.example.dulajdilrukshan.indoorapplication;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.wifi.ScanResult;
@@ -17,8 +17,12 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +36,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,13 +48,19 @@ import java.util.TimerTask;
 
 
 public class PathActivity extends AppCompatActivity {
-    ImageView drawingImageView;
+    ImageView drawingImageView,creatpath;
     TextView error;
+    Button navi;
+    int index=0;
+
     com.example.dulajdilrukshan.indoorapplication.Paths paths = new com.example.dulajdilrukshan.indoorapplication.Paths();
+    public float locationarrays[][],connectionarray[][];
     private Timer mytimer;
     WifiManager wifiManager;
-
-
+    AutoCompleteTextView autoCompleteTextViewfrom;
+    AutoCompleteTextView autoCompleteTextViewto;
+    LinearLayout Auditorium,Multimedia,MSCRoom,LectureHall1,Library,DCCNLab,LiftLobby,CommonRoom,WashRooms,StaffRoom;
+    LinearLayout Con1,Con2,Con4,Main,Con5,Con6,Con7,Con8,Con9,Con10;
 
     double d;
     double temp;
@@ -77,11 +86,50 @@ public class PathActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path);
+        com.example.dulajdilrukshan.indoorapplication.CreatePaths createPaths=new com.example.dulajdilrukshan.indoorapplication.CreatePaths();
+        Auditorium=findViewById(R.id.auditorium);
+        Multimedia=findViewById(R.id.multimedia);
+        MSCRoom=findViewById(R.id.mscroom);
+        LectureHall1=findViewById(R.id.hallone);
+        Library=findViewById(R.id.library);
+        DCCNLab=findViewById(R.id.dccn);
+        LiftLobby=findViewById(R.id.lift);
+        CommonRoom=findViewById(R.id.commonroom);
+        WashRooms=findViewById(R.id.washroom);
+        StaffRoom=findViewById(R.id.staffroom);
+        Con2=findViewById(R.id.con2);
+        Con4=findViewById(R.id.con4);
+        Con5=findViewById(R.id.con5);
+        Main=findViewById(R.id.maincon);
+        Con6=findViewById(R.id.con6);
+        Con7=findViewById(R.id.con7);
+        Con8=findViewById(R.id.con8);
+        Con9=findViewById(R.id.con9);
+        Con10=findViewById(R.id.con10);
+        Con1=findViewById(R.id.con1);
+        autoCompleteTextViewfrom = (AutoCompleteTextView) findViewById(R.id.direction_header_from_text);
+        autoCompleteTextViewto = (AutoCompleteTextView) findViewById(R.id.direction_header_to_text);
+
+        Resources resources=getResources();
+
+        String [] locations = resources.getStringArray(R.array.locations_array);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,locations);
+
+        autoCompleteTextViewfrom.setAdapter(adapter);
+        autoCompleteTextViewto.setAdapter(adapter);
+        navi=findViewById(R.id.button);
+
+
+
+
+
 
         checkAndRequestPermissions();
 
         MyRequestQueue = Volley.newRequestQueue(this);
-        audit();
+
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
@@ -214,43 +262,9 @@ public class PathActivity extends AppCompatActivity {
         }
     };
 
-    public void audit() {
 
-        String to, from;
 
-        Intent intent = getIntent();
-
-        to = intent.getStringExtra("to");
-        from = intent.getStringExtra("from");
-        // from=intent.getStringExtra("from");
-        if (to != null) {
-            if (from.equals("Lift Lobby")) {
-                if (to.equals("Auditorium")) {
-                    lifttoauditorium();
-                } else if (to.equals("MSC Room")) {
-                    lifttomscroom();
-                } else if (to.equals("Lecture Hall 1")) {
-                    lifttohallone();
-                } else if (to.equals("Multimedia Lab")) {
-                    lifttomultimedia();
-                } else if (to.equals("Library")) {
-                    lifttolibrary();
-                } else if (to.equals("Staff Room")) {
-                    lifttoStaffroom();
-                } else if (to.equals("Wash Rooms")) {
-                    lifttoWashroom();
-                } else if (to.equals("Common Room")) {
-                    lifttocommomroom();
-                } else if (to.equals("DCCN Lab")) {
-                    lifttodccnlab();
-                }
-            }
-
-        }
-
-    }
-
-    public Canvas imagepaths() {
+    public Canvas showlocation() {
 
         drawingImageView = (ImageView) this.findViewById(R.id.DrawingImageView);
 
@@ -268,71 +282,58 @@ public class PathActivity extends AppCompatActivity {
         return canvas;
     }
 
+    public Canvas createpaths() {
+
+        creatpath = (ImageView) this.findViewById(R.id.pathImageView);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+
+
+        Bitmap bitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        creatpath.setImageBitmap(bitmap);
+        return canvas;
+    }
+
+
     public void showLocation(float x, float y) {
 
-        paths.showLocation(imagepaths(), x, y);
+        paths.showLocation(showlocation(), x, y);
     }
 
-    public void lifttoauditorium() {
-        float x = (float) 12.0 * 25;
-        float y = (float) 15.0 * 25;
-
-        paths.lifttoaudit(imagepaths());
 
 
-    }
 
-    public void lifttolibrary() {
-        paths.lifttolibrary(imagepaths());
-
-    }
-
-    public void lifttomscroom() {
-
-        paths.lifttomscroom(imagepaths());
-
-
-    }
-
-    public void lifttomultimedia() {
-        paths.lifttomultimedia(imagepaths());
-    }
-
-    public void lifttohallone() {
-        paths.lifttohallone(imagepaths());
-
-
-    }
-
-    public void lifttodccnlab() {
-
-        paths.lifttodccnlab(imagepaths());
-
-    }
-
-    public void lifttoStaffroom() {
-
-        paths.lifttoaudit(imagepaths());
-
-    }
-
-    public void lifttoWashroom() {
-
-        paths.lifttoWashroom(imagepaths());
-
-    }
-
-    public void lifttocommomroom() {
-
-        paths.lifttocommomroom(imagepaths());
-
-    }
+//Gowtham-ShowPaths
 
 
     public void navigation(View view) {
-        Intent search = new Intent(this,SearchActivity.class);
-        startActivity(search);
-    }
+
+//      // createPaths.showpaths(createpaths(),"Auditorium","Multimedia");
+        CreatePaths cp=new CreatePaths();
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
+//        //int index=0;
+//
+        showpaths();
+        cp.createpath("Auditorium","MultimediaLab");
+        cp.drawingpaths(createpaths(),locationarrays,connectionarray);
+
+//        txtsub.setText(locationarrays[0][0]+" "+locationarrays[0][1]);
+
+
+
+
+//
+        }
+
+
+
+
 
     public void submit(View view) {
         EditText  txtsub = (EditText) findViewById(R.id.txtval);
@@ -343,6 +344,136 @@ public class PathActivity extends AppCompatActivity {
         txtsub.setText("");
 
     }
+
+    public void showpaths()
+    {
+        EditText  txtsub = (EditText) findViewById(R.id.txtval);
+        CreatePaths cp=new CreatePaths();
+        float auditoriumX,multimediaX,mscroomX,libraryX,lecthall1X,dccnX,liftX,commonX,staffX,washX,
+                auditoriumY,multimediaY,mscroomY,libraryY,lecthall1Y,dccnY,liftY,commonY,staffY,washY;
+        float con1X,con2X,con4X,con5X,con6X,con7X,con8X,con9X,con10X,mainX,
+                con1Y,con2Y,con4Y,con5Y,con6Y,con7Y,con8Y,con9Y,con10Y,mainY;
+        int auditoriumlocationarray[]=new int[2];
+        int multimedialocationarray[]=new int[2];
+        int mscroomlocationarray[]=new int[2];
+        int librarylocationarray[]=new int[2];
+        int lecturehall1locationarray[]=new int[2];
+        int dccnlablocationarray[]=new int[2];
+        int liftlocationarray[]=new int[2];
+        int commonroomlocationarray[]=new int[2];
+        int staffroomlocationarray[]=new int[2];
+        int washroomlocationarray[]=new int[2];
+
+        int con1array[]=new int[2];
+        int con2array[]=new int[2];
+        int con4array[]=new int[2];
+        int con5array[]=new int[2];
+        int con6array[]=new int[2];
+        int con7array[]=new int[2];
+        int con8array[]=new int[2];
+        int con9array[]=new int[2];
+        int con10array[]=new int[2];
+        int conMainarray[]=new int[2];
+
+
+        Auditorium.getLocationOnScreen(auditoriumlocationarray);
+        Multimedia.getLocationOnScreen(multimedialocationarray);
+        MSCRoom.getLocationOnScreen(mscroomlocationarray);
+        Library.getLocationOnScreen(librarylocationarray);
+        LectureHall1.getLocationOnScreen(lecturehall1locationarray);
+        DCCNLab.getLocationOnScreen(dccnlablocationarray);
+        LiftLobby.getLocationOnScreen(liftlocationarray);
+        CommonRoom.getLocationOnScreen(commonroomlocationarray);
+        StaffRoom.getLocationOnScreen(staffroomlocationarray);
+        WashRooms.getLocationOnScreen(washroomlocationarray);
+
+        Con1.getLocationOnScreen(con1array);
+        Con2.getLocationOnScreen(con2array);
+        Con4.getLocationOnScreen(con4array);
+        Con5.getLocationOnScreen(con5array);
+        Con6.getLocationOnScreen(con6array);
+        Con7.getLocationOnScreen(con7array);
+        Con8.getLocationOnScreen(con8array);
+        Con9.getLocationOnScreen(con9array);
+        Con10.getLocationOnScreen(con10array);
+        Main.getLocationOnScreen(conMainarray);
+
+        //X coordinates
+        auditoriumX= auditoriumlocationarray[0];
+        multimediaX=multimedialocationarray[0];
+        mscroomX=mscroomlocationarray[0];
+        libraryX=librarylocationarray[0];
+        lecthall1X=lecturehall1locationarray[0];
+        dccnX=dccnlablocationarray[0];
+        liftX=liftlocationarray[0];
+        commonX=commonroomlocationarray[0]+50;
+        staffX=staffroomlocationarray[0]+50;
+        washX=washroomlocationarray[0]+50;
+        con1X=con1array[0];
+        con2X=con2array[0];
+        con4X=con4array[0];
+        con5X=con5array[0];
+        con6X=con6array[0]+50;
+        con7X=con7array[0]+50;
+        con8X=con8array[0]+50;
+        con9X=con9array[0]+50;
+        con10X=con10array[0]+50;
+        mainX=conMainarray[0];
+
+
+
+
+
+
+       //Y Coordinates
+        auditoriumY= auditoriumlocationarray[1]-50;
+        multimediaY=multimedialocationarray[1]-50;
+        mscroomY=mscroomlocationarray[1]-50;
+        libraryY=librarylocationarray[1]-50;
+        lecthall1Y=lecturehall1locationarray[1]-50;
+        dccnY=dccnlablocationarray[1]-50;
+        liftY=liftlocationarray[1]-50;
+        commonY=commonroomlocationarray[1]-50;
+        staffY=staffroomlocationarray[1];
+        washY=washroomlocationarray[1]-50;
+
+        con1Y=con1array[1]-50;
+        con2Y=con2array[1]-50;
+        con4Y=con4array[1]-50;
+        con5Y=con5array[1]-50;
+        con6Y=con6array[1]-50;
+        con7Y=con7array[1]-50;
+        con8Y=con8array[1];
+        con9Y=con9array[1]-50;
+        con10Y=con10array[1]-50;
+        mainY=conMainarray[1]-50;
+
+
+
+       locationarrays=new float[][]
+               {
+                   {auditoriumX,auditoriumY}, {multimediaX,multimediaY},{mscroomX,mscroomY},
+                       {libraryX,libraryY},{lecthall1X,lecthall1Y},{dccnX,dccnY},{liftX,liftY},
+                       {commonX,commonY},{staffX,staffY},{washX,washY}
+
+               };
+
+      connectionarray=new float[][]
+               {
+                       {con1X,con1Y},{con2X,con2Y},{con4X,con4Y},{con5X,con5Y},
+                       {con6X,con6Y},{con7X,con7Y},{con8X,con8Y},{con9X,con9Y},
+                       {con10X,con10Y},{mainX,mainY}
+               };
+
+
+
+
+
+
+
+
+    }
+
 
 
     // SamWickramarachchi - Request Access Permissions Device Location
@@ -429,4 +560,6 @@ public class PathActivity extends AppCompatActivity {
                 .create()
                 .show();
     }
+
+
 }
