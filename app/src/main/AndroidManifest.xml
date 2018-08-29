@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
 
@@ -15,7 +17,7 @@
         android:roundIcon="@mipmap/baseline_navigation_black_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".PathActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,11 +28,17 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".LocateFriend" />
         <activity android:name=".FriendRequests" />
-        <activity android:name=".LoginActivity" />
+        <!--<activity android:name=".LoginActivity" />-->
         <activity android:name=".NavigateActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".MainActivity" />
-        <!--<activity android:name=".PathActivity"></activity>-->
+        <activity android:name=".PathActivity"></activity>
+
+        <service
+            android:name=".ScheduledService"
+            android:enabled="true"
+            android:stopWithTask="true"/>
+
     </application>
 
 </manifest>

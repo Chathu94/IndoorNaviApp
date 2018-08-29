@@ -35,8 +35,10 @@ public class LoginActivity extends AppCompatActivity {
     String url;
     boolean session = false;
 
-    private SharedPreferences mPreferences;
-    private SharedPreferences.Editor mEditor;
+  //  private SharedPreferences mPreferences;
+  //  private SharedPreferences.Editor mEditor;
+
+    Globals sharedData = Globals.getInstance();
 
     @Override
 
@@ -46,8 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         MyRequestQueue = Volley.newRequestQueue(this);
 
         url = "http://ec2-18-191-196-123.us-east-2.compute.amazonaws.com:8081/login";
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mPreferences.edit();
+        //mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //mEditor = mPreferences.edit();
 
 
     }
@@ -84,7 +86,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.equals("1")) {
                         session = true;
                         enter();
-                        Toast.makeText(getApplicationContext(), "" + pusername + " Logged In ", Toast.LENGTH_LONG).show();
+
+                        sharedData.setValue(pusername);
+
+                       // Toast.makeText(getApplicationContext(), sharedData.getValue() + " from Global class ", Toast.LENGTH_LONG).show();
 
                     } else if (!session) {
 
@@ -141,8 +146,8 @@ public class LoginActivity extends AppCompatActivity {
         if (!pusername.isEmpty() && !pass1.isEmpty()) {
 
             pushData();
-            mEditor.putString(getString(R.string.pusername), pusername);
-            mEditor.commit();
+            //mEditor.putString(getString(R.string.pusername), pusername);
+           // mEditor.commit();
 
         }
 
