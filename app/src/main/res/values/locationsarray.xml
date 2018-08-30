@@ -3,7 +3,7 @@
     <string-array name="locations_array">
         <item>Auditorium</item>
         <item>MSCRoom</item>
-       <item>LectureHall1</item>
+       <item>LectureHallOne</item>
         <item>MultimediaLab</item>
         <item>Library</item>
         <item>DCCNLab</item>

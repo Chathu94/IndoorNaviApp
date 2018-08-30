@@ -320,7 +320,8 @@ public class PathActivity extends AppCompatActivity {
 //        //int index=0;
 //
         showpaths();
-        cp.createpath("Auditorium","MultimediaLab");
+        cp.createpath("Auditorium","DCCNLab");
+ //       cp.createpath(autoCompleteTextViewfrom.getText().toString(),autoCompleteTextViewto.getText().toString());
         cp.drawingpaths(createpaths(),locationarrays,connectionarray);
 
 //        txtsub.setText(locationarrays[0][0]+" "+locationarrays[0][1]);

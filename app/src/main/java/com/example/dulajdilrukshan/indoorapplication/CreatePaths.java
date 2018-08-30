@@ -35,6 +35,7 @@ public class CreatePaths{
     ArrayList<String>locationindex=new ArrayList<>();
     ArrayList<String>connectionindex=new ArrayList<>();
     ArrayList<Integer>pathsindex=new ArrayList<>();
+    ArrayList<String>toDccn=new ArrayList<>();
 
 
     public void drawingpaths(Canvas canvas,float locationarray[][],float connectionarray[][])
@@ -57,9 +58,8 @@ public class CreatePaths{
 
         connectionindex=new ArrayList<>(Arrays.asList("con1","con2","con4","con5","con6","con7","con8","con9","con10","mainCon"));
 
-        //if(!paths.get(0).startsWith("con")) //if location is the first element in the Paths array
-        {
-            for (int i = 0; i <paths.size(); i++)
+        //StartLocation
+            for (int i = 0; i <paths.size()-1; i++)
             {
                 for (int j = 0; j < locationindex.size(); j++)
                 {
@@ -71,21 +71,21 @@ public class CreatePaths{
                             {
                                 float startX = locationarray[j][0];
                                 float startY = locationarray[j][1];
-                                float stopX = connectionarray[j][0];
-                                float stopY = connectionarray[j][1];
+                                float stopX = connectionarray[k][0];
+                                float stopY = connectionarray[k][1];
                                 canvas.drawLine(startX, startY, stopX, stopY, paint);
                                 break;
                             }
                         }
-                        break;
+
                     }
-                   break;
+
 
                 }
             }
-        }
-        //else
-        {
+
+
+        //Connections
             for (int i = 1; i < paths.size(); i++)
             {
                 for (int j=0;j<connectionindex.size();j++)
@@ -96,33 +96,67 @@ public class CreatePaths{
                         {
                             if(paths.get(i).equalsIgnoreCase(locationindex.get(k)))
                             {
-                                float startX = locationarray[j][0];
-                                float startY = locationarray[j][1];
+                                float startX = locationarray[k][0];
+                                float startY = locationarray[k][1];
                                 float stopX = connectionarray[j][0];
                                 float stopY = connectionarray[j][1];
                                 canvas.drawLine(startX, startY, stopX, stopY, paint);
                                 break;
                             }
                             else
-                                if(paths.get(i).equalsIgnoreCase(connectionindex.get(k)))
+                                if(paths.get(i).equalsIgnoreCase(connectionindex.get(k))&&!paths.get(i+1).startsWith("con"))
                                 {
                                     float startX = connectionarray[j][0];
                                     float startY = connectionarray[j][1];
-                                    float stopX = locationarray[j+1][0];
-                                    float stopY = locationarray[j+1][1];
+                                    float stopX = locationarray[k][0];
+                                    float stopY = locationarray[k][1];
                                     canvas.drawLine(startX, startY, stopX, stopY, paint);
+                                    break;
 
                                 }
-                            break;
+                                else
+                                    if(paths.get(i).equalsIgnoreCase(connectionindex.get(j)))
+                                    {
+                                        float startX = connectionarray[j][0];
+                                        float startY = connectionarray[j][1];
+                                        float stopX = connectionarray[k+1][0];
+                                        float stopY = connectionarray[k+1][1];
+                                        canvas.drawLine(startX, startY, stopX, stopY, paint);
+                                        break;
+                                    }
+
                         }
-                        break;
+
                     }
-                    break;
 
                 }
-                break;
+
             }
-        }
+
+
+        //Destination
+            for (int j = 0; j < locationindex.size(); j++)
+            {
+                if (paths.get(paths.size()-1).equalsIgnoreCase(locationindex.get(j)))
+                {
+                    for (int k = 0; k < connectionindex.size(); k++)
+                    {
+                        if (paths.get(paths.size()-2).equalsIgnoreCase(connectionindex.get(k)))
+                        {
+                            float startX = locationarray[j][0];
+                            float startY = locationarray[j][1];
+                            float stopX = connectionarray[k][0];
+                            float stopY = connectionarray[k][1];
+                            canvas.drawLine(startX, startY, stopX, stopY, paint);
+                            break;
+                        }
+                    }
+
+                }
+
+
+            }
+        //}
 
 
 //            canvas.drawLine(connectionarray[0][0],connectionarray[0][1],connectionarray[1][0],connectionarray[1][1], paint);//Con1toCon2
@@ -149,10 +183,10 @@ public class CreatePaths{
     }
     public void createpath(String startlocation, String destination)
     {
-        auditoriumtomain=new ArrayList<>(Arrays.asList("con1","Auditorium","con1","MultimediaLab","con1","con2","MSCRoom","con2","LectureHall1","con2"
+        auditoriumtomain=new ArrayList<>(Arrays.asList("con1","Auditorium","con1","MultimediaLab","con1","con2","MSCRoom","con2","LectureHallOne","con2"
                 ,"con4","Library","con4"));
 
-        maintostaff=new ArrayList<>(Arrays.asList("con5","conMain","DCCNLab","conMain","con5","Lift","con5","con6","con7","con9",
+        maintostaff=new ArrayList<>(Arrays.asList("con5","Lift","con5","conMain","DCCNLab","conMain","con5","con6","con7","con9",
                 "CommonRoom","con7","con9","con10","WashRoom","con7","con8","StaffRoom"));
 
 
@@ -226,7 +260,10 @@ public class CreatePaths{
 
 
 
-        //From conMain to StaffRoom
+
+
+
+        //From con5 to StaffRoom
         for (int j = 0; j < maintostaff.size(); j++)
         {
             if (maintostaff.get(j).equalsIgnoreCase(startlocation))
@@ -286,13 +323,35 @@ public class CreatePaths{
         if(isDestination2) {
             for (int i = 0; i < path2.size() - 1; i++) {
                 if (!path2.get(i).startsWith("con")) {
-                    if (!path2.get(i).equalsIgnoreCase(startlocation) || !path2.get(path2.size() - 1).equalsIgnoreCase(destination)) {
+                    if (!path2.get(i).equalsIgnoreCase(startlocation) || !path2.get(path2.size() - 1).equalsIgnoreCase(destination))
+                    {
                         path2.remove(i);
                     }
                 }
 
             }
         }
+        if(isDestination2) {
+            for (int i = 0; i < path1.size() - 1; i++) {
+                if (!path1.get(i).startsWith("con")) {
+                    if (!path1.get(i).equalsIgnoreCase(startlocation) ) {
+                        path1.remove(i);
+                    }
+                }
+
+            }
+        }
+        if(isDestination2)
+        {
+            for (int i=0;i<path2.size()-1;i++)
+            {
+                if(!destination.equalsIgnoreCase("DCCNLab")&&path2.get(i).equalsIgnoreCase("conMain"))
+                {
+                    path2.remove(i);
+                }
+            }
+        }
+
 
 
             paths.addAll(path1);
