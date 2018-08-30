@@ -56,7 +56,7 @@ public class CreatePaths{
         locationindex=new ArrayList<>(Arrays.asList("Auditorium","MultimediaLab","MSCRoom","Library","LectureHallOne","DCCNLab",
                 "Lift","CommonRoom","StaffRoom","WashRoom"));
 
-        connectionindex=new ArrayList<>(Arrays.asList("con1","con2","con4","con5","con6","con7","con8","con9","con10","mainCon"));
+        connectionindex=new ArrayList<>(Arrays.asList("con1","con2","con4","con5","con6","con7","con8","con9","con10","conMain"));
 
         //StartLocation
             for (int i = 0; i <paths.size()-1; i++)
@@ -84,48 +84,24 @@ public class CreatePaths{
                 }
             }
 
-
+//
         //Connections
-            for (int i = 1; i < paths.size(); i++)
+            for (int i = 1; i < paths.size()-1; i++)
             {
-                for (int j=0;j<connectionindex.size();j++)
+                for (int j=0;j<connectionindex.size()-1;j++)
                 {
                     if(paths.get(i).equalsIgnoreCase(connectionindex.get(j)))
                     {
-                        for(int k=0;k<locationindex.size();k++)
                         {
-                            if(paths.get(i).equalsIgnoreCase(locationindex.get(k)))
-                            {
-                                float startX = locationarray[k][0];
-                                float startY = locationarray[k][1];
-                                float stopX = connectionarray[j][0];
-                                float stopY = connectionarray[j][1];
-                                canvas.drawLine(startX, startY, stopX, stopY, paint);
-                                break;
-                            }
-                            else
-                                if(paths.get(i).equalsIgnoreCase(connectionindex.get(k))&&!paths.get(i+1).startsWith("con"))
-                                {
-                                    float startX = connectionarray[j][0];
-                                    float startY = connectionarray[j][1];
-                                    float stopX = locationarray[k][0];
-                                    float stopY = locationarray[k][1];
-                                    canvas.drawLine(startX, startY, stopX, stopY, paint);
-                                    break;
-
-                                }
-                                else
-                                    if(paths.get(i).equalsIgnoreCase(connectionindex.get(j)))
-                                    {
-                                        float startX = connectionarray[j][0];
-                                        float startY = connectionarray[j][1];
-                                        float stopX = connectionarray[k+1][0];
-                                        float stopY = connectionarray[k+1][1];
-                                        canvas.drawLine(startX, startY, stopX, stopY, paint);
-                                        break;
-                                    }
-
+                            float startX = connectionarray[j][0];
+                            float startY = connectionarray[j][1];
+                            float stopX = connectionarray[j+1][0];
+                            float stopY = connectionarray[j+1][1];
+                            canvas.drawLine(startX, startY, stopX, stopY, paint);
+                            break;
                         }
+
+
 
                     }
 
@@ -143,10 +119,10 @@ public class CreatePaths{
                     {
                         if (paths.get(paths.size()-2).equalsIgnoreCase(connectionindex.get(k)))
                         {
-                            float startX = locationarray[j][0];
-                            float startY = locationarray[j][1];
-                            float stopX = connectionarray[k][0];
-                            float stopY = connectionarray[k][1];
+                            float startX = connectionarray[k][0];
+                            float startY = connectionarray[k][1];
+                            float stopX = locationarray[j][0];
+                            float stopY = locationarray[j][1];
                             canvas.drawLine(startX, startY, stopX, stopY, paint);
                             break;
                         }
@@ -354,9 +330,26 @@ public class CreatePaths{
 
 
 
+
+
             paths.addAll(path1);
             paths.addAll(path2);
+//RemoveDuplicates
 
+        if(!paths.isEmpty()) {
+            for (int i = 1; i < paths.size() - 1; i++) {
+                for (int j=1;j<paths.size()-2;j++)
+                {
+                    if (paths.get(i).equalsIgnoreCase(paths.get(j-1)))
+                    {
+                        {
+                            paths.remove(j);
+                        }
+                    }
+                }
+
+            }
+        }
 
 
 

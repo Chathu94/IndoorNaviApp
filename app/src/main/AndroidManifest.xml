@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <supports-screens android:anyDensity="true"></supports-screens>
     <application
 
         android:allowBackup="true"
@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/baseline_navigation_black_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".PathActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,7 @@
         <activity android:name=".NavigateActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".PathActivity"></activity>
+        <!--<activity android:name=".PathActivity"></activity>-->
 
         <service
             android:name=".ScheduledService"
