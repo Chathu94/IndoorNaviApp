@@ -30,6 +30,7 @@ public class CreatePaths{
     ArrayList<String>paths=new ArrayList<>();
     ArrayList<String>path1=new ArrayList<>();
     ArrayList<String>path2=new ArrayList<>();
+    ArrayList<String>path3=new ArrayList<>();
     ArrayList<String>auditoriumtomain=new ArrayList<>();
     ArrayList<String>maintostaff=new ArrayList<>();
     ArrayList<String>locationindex=new ArrayList<>();
@@ -88,23 +89,33 @@ public class CreatePaths{
         //Connections
             for (int i = 1; i < paths.size()-1; i++)
             {
+                float startX=0,startY=0,stopX=0,stopY=0;
                 for (int j=0;j<connectionindex.size()-1;j++)
                 {
                     if(paths.get(i).equalsIgnoreCase(connectionindex.get(j)))
                     {
                         {
-                            float startX = connectionarray[j][0];
-                            float startY = connectionarray[j][1];
-                            float stopX = connectionarray[j+1][0];
-                            float stopY = connectionarray[j+1][1];
-                            canvas.drawLine(startX, startY, stopX, stopY, paint);
+                            startX = connectionarray[j][0];
+                            startY = connectionarray[j][1];
+
+//                            stopX = connectionarray[3][0];
+//                            stopY = connectionarray[3][1];
+//                            canvas.drawLine(startX, startY, 0, 0, paint);
                             break;
                         }
 
-
-
                     }
 
+                }
+                for(int j=0;j<connectionindex.size()-1;j++)
+                {
+                    if(paths.get(i+1).equalsIgnoreCase(connectionindex.get(j)))
+                    {
+                        stopX=connectionarray[j][0];
+                        stopY=connectionarray[j][1];
+                        canvas.drawLine(startX, startY,stopX,stopY, paint);
+                        break;
+                    }
                 }
 
             }
@@ -162,8 +173,12 @@ public class CreatePaths{
         auditoriumtomain=new ArrayList<>(Arrays.asList("con1","Auditorium","con1","MultimediaLab","con1","con2","MSCRoom","con2","LectureHallOne","con2"
                 ,"con4","Library","con4"));
 
-        maintostaff=new ArrayList<>(Arrays.asList("con5","Lift","con5","conMain","DCCNLab","conMain","con5","con6","con7","con9",
+        maintostaff=new ArrayList<>(Arrays.asList("con5","Lift","con5","con6","con6","con7","con7","con9",
                 "CommonRoom","con7","con9","con10","WashRoom","con7","con8","StaffRoom"));
+        toDccn=new ArrayList<>(Arrays.asList("con5","conMain","DCCNLab","conMain","con5"));
+
+
+
 
 
 
@@ -268,6 +283,51 @@ public class CreatePaths{
 
         }
 
+        for(int y=0;y<toDccn.size();y++)
+        {
+            if (toDccn.get(y).equalsIgnoreCase(destination))
+            {
+
+                destination2index = y;
+                isDestination2=true;
+                break;
+            }
+
+
+        }
+
+        if (startlocation2index < destination2index) {
+            for (int i = startlocation2index; i <= destination2index; i++) {
+
+                {
+                    path3.add(toDccn.get(i));
+                }
+            }
+        } else
+        if (startlocation2index > destination2index)
+        {
+            if(!isDestination2)
+            {
+                for (int i = startlocation2index; i < maintostaff.size(); i++) {
+
+                    {
+                        path3.add(toDccn.get(i));
+                    }
+                }
+            }
+            else
+            {
+                for (int i = startlocation2index; i >= destination2index; i--)
+                {
+                    path3.add(toDccn.get(i));
+                }
+            }
+        }
+
+
+
+        /////////////
+
         if (startlocation2index < destination2index) {
             for (int i = startlocation2index; i <= destination2index; i++) {
 
@@ -317,23 +377,35 @@ public class CreatePaths{
 
             }
         }
-        if(isDestination2)
-        {
-            for (int i=0;i<path2.size()-1;i++)
-            {
-                if(!destination.equalsIgnoreCase("DCCNLab")&&path2.get(i).equalsIgnoreCase("conMain"))
-                {
-                    path2.remove(i);
-                }
-            }
-        }
+//        if(isDestination2)
+//        {
+//            for (int i=0;i<path2.size()-1;i++)
+//            {
+//                if(!destination.equalsIgnoreCase("DCCNLab"))
+//                {
+//                    if(path2.get(i).startsWith("conMain"))
+//                    {
+//                        int index=path2.indexOf("conMain");
+//                        path2.remove(i);
+//                        break;
+//                    }
+//                    break;
+//                }
+//            }
+//        }
 
 
-
-
+//        //locationDCCNLAB
+//        if(destination.equalsIgnoreCase("DCCNLab"))
+//        {
+//            for(int i=0;i<toDccn.size();i++) {
+//                path3.add(toDccn.get(i));
+//            }
+//        }
 
             paths.addAll(path1);
             paths.addAll(path2);
+            paths.addAll(path3);
 //RemoveDuplicates
 
         if(!paths.isEmpty()) {
@@ -344,8 +416,10 @@ public class CreatePaths{
                     {
                         {
                             paths.remove(j);
+                            break;
                         }
                     }
+                    break;
                 }
 
             }

@@ -6,27 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".PathActivity">
 
-    <ImageView
-        android:id="@+id/floorplan"
-        android:layout_width="0dp"
-        android:layout_height="347dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/floor_plan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.676">
-
-
-    </ImageView>
-
+    <include
+        layout="@layout/floorplan"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="46dp"></include>
     <include layout="@layout/activity_search"></include>
 
     <LinearLayout
@@ -60,23 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.833">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="21dp"
-        android:layout_height="21dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.616"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72">
 
     </LinearLayout>
 
@@ -125,23 +91,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="21dp"
-        android:layout_height="21dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.374"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.628">
@@ -216,10 +165,10 @@
         android:id="@+id/library"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="327dp"
+        android:layout_marginTop="336dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -236,13 +185,14 @@
         android:id="@+id/auditorium"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:gravity="fill"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321">
+        app:layout_constraintVertical_bias="0.378">
 
         <ImageView
             android:id="@+id/imageView1"
@@ -263,7 +213,7 @@
         app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38">
+        app:layout_constraintVertical_bias="0.419">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -344,10 +294,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintVertical_bias="0.625">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -386,10 +336,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.776"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806">
+        app:layout_constraintVertical_bias="0.82">
 
         <ImageView
             android:id="@+id/imageView8"
@@ -407,10 +357,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.776"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765">
+        app:layout_constraintVertical_bias="0.77">
 
         <ImageView
             android:id="@+id/imageView"
@@ -443,7 +393,7 @@
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38">
+        app:layout_constraintVertical_bias="0.419">
 
         <ImageView
             android:id="@+id/imageView10"
@@ -480,10 +430,10 @@
         android:id="@+id/con6"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="327dp"
+        android:layout_marginTop="336dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -504,10 +454,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.299"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65999997">
+        app:layout_constraintVertical_bias="0.679">
 
         <ImageView
             android:id="@+id/imageView13"
@@ -526,10 +476,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806">
+        app:layout_constraintVertical_bias="0.82">
 
         <ImageView
             android:id="@+id/imageView14"
@@ -548,10 +498,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintVertical_bias="0.623">
 
         <ImageView
             android:id="@+id/imageView15"
@@ -566,12 +516,12 @@
         android:id="@+id/con7"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="142dp"
+        android:layout_marginEnd="144dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765">
+        app:layout_constraintVertical_bias="0.78">
 
         <ImageView
             android:id="@+id/imageView17"
@@ -586,10 +536,10 @@
         android:id="@+id/con5"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="327dp"
+        android:layout_marginTop="336dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -627,12 +577,15 @@
         android:id="@+id/con9"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="376dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79">
 
         <ImageView
             android:id="@+id/imageView20"

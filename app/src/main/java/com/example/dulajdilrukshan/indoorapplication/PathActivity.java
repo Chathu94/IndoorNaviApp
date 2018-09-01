@@ -120,9 +120,7 @@ public class PathActivity extends AppCompatActivity {
         autoCompleteTextViewfrom.setAdapter(adapter);
         autoCompleteTextViewto.setAdapter(adapter);
         navi=findViewById(R.id.button3);
-        floorplan=findViewById(R.id.floorplan);
-        floorplan.setFitsSystemWindows(true);
-        floorplan.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
 
 
 
@@ -322,7 +320,7 @@ public class PathActivity extends AppCompatActivity {
 //        //int index=0;
 //
         showpaths();
-        cp.createpath("Auditorium","Library");
+        cp.createpath("Auditorium","DCCNLab");
  //       cp.createpath(autoCompleteTextViewfrom.getText().toString(),autoCompleteTextViewto.getText().toString());
         cp.drawingpaths(createpaths(),locationarrays,connectionarray);
 
