@@ -48,7 +48,7 @@ import java.util.TimerTask;
 
 
 public class PathActivity extends AppCompatActivity {
-    ImageView drawingImageView,creatpath;
+    ImageView drawingImageView,creatpath,floorplan;
     TextView error;
     Button navi;
     int index=0;
@@ -119,8 +119,10 @@ public class PathActivity extends AppCompatActivity {
 
         autoCompleteTextViewfrom.setAdapter(adapter);
         autoCompleteTextViewto.setAdapter(adapter);
-        navi=findViewById(R.id.button);
-
+        navi=findViewById(R.id.button3);
+        floorplan=findViewById(R.id.floorplan);
+        floorplan.setFitsSystemWindows(true);
+        floorplan.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 
 

@@ -6,15 +6,15 @@
     android:layout_height="wrap_content"
     android:background="#33ACFF"
     android:clickable="true"
+    android:gravity="left|center"
     android:orientation="horizontal"
-    android:paddingBottom="6dp"
     android:paddingTop="28dp">
 
 
     <ImageButton
         android:id="@+id/direction_header_back_button"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:onClick="goback"
@@ -26,8 +26,8 @@
         app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="83dp"
         android:layout_weight="10"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -49,7 +49,7 @@
             <AutoCompleteTextView
                 android:id="@+id/direction_header_from_text"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="39dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
@@ -86,7 +86,7 @@
             <AutoCompleteTextView
                 android:id="@+id/direction_header_to_text"
                 android:layout_width="10dp"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
@@ -107,13 +107,24 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="104dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="search"
-        android:text="Search" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="67dp"
+            android:layout_height="65dp"
+            android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|fill_horizontal|fill|clip_vertical|clip_horizontal|start|end"
+            android:layout_weight="1"
+            android:background="@drawable/ic_directions_black_24dp"
+            android:gravity="right|center_vertical|center_horizontal|center|fill|end"
+            android:onClick="navigation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
 
 </LinearLayout>

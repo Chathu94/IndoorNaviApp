@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".PathActivity">
 
+    <ImageView
+        android:id="@+id/floorplan"
+        android:layout_width="0dp"
+        android:layout_height="347dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/floor_plan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676">
+
+
+    </ImageView>
+
+    <include layout="@layout/activity_search"></include>
+
     <LinearLayout
         android:layout_width="21dp"
         android:layout_height="21dp"
@@ -158,21 +181,6 @@
         app:layout_constraintVertical_bias="0.561">
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/floorplan"
-        android:layout_width="392dp"
-        android:layout_height="676dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357"
-        app:srcCompat="@drawable/floor_plan">
-
-
-    </ImageView>
 
     <ImageView
         android:id="@+id/DrawingImageView"
@@ -633,145 +641,6 @@
             android:layout_weight="1"
             android:visibility="invisible"
             app:srcCompat="@drawable/cross" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/direction_header_main_layout"
-        android:layout_width="372dp"
-        android:layout_height="132dp"
-        android:layout_marginBottom="408dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#33ACFF"
-        android:clickable="true"
-        android:orientation="horizontal"
-        android:paddingBottom="6dp"
-        android:paddingTop="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-
-        <ImageButton
-            android:id="@+id/direction_header_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="73dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:onClick="goback"
-            android:paddingBottom="@dimen/square_button_padding"
-            android:paddingLeft="@dimen/square_button_padding"
-            android:paddingRight="6dp"
-            android:paddingTop="6dp"
-            android:tint="@android:color/white"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
-
-        <LinearLayout
-            android:layout_width="333dp"
-            android:layout_height="104dp"
-            android:layout_weight="10"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="269dp"
-                android:layout_height="48dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:padding="6dp"
-                    android:tint="@android:color/white"
-                    app:srcCompat="@drawable/ic_adjust_black" />
-
-                <AutoCompleteTextView
-                    android:id="@+id/direction_header_from_text"
-                    android:layout_width="232dp"
-                    android:layout_height="33dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_corner"
-                    android:completionThreshold="1"
-                    android:ems="10"
-                    android:gravity="center_vertical"
-                    android:hint="choose_from"
-                    android:inputType="textNoSuggestions|text"
-                    android:maxLines="1"
-                    android:paddingRight="0dp"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="#d2d2d2"
-                    android:textColorLink="#33ACFF"
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="269dp"
-                android:layout_height="48dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView22"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:padding="6dp"
-                    android:tint="@android:color/white"
-                    app:srcCompat="@drawable/ic_adjust" />
-
-                <AutoCompleteTextView
-                    android:id="@+id/direction_header_to_text"
-                    android:layout_width="226dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_corner"
-                    android:completionThreshold="1"
-                    android:gravity="center_vertical"
-                    android:hint="choose_to"
-                    android:inputType="textNoSuggestions|text"
-                    android:maxLines="1"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="#d2d2d2"
-                    android:textColorLink="#33ACFF"
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="71dp"
-            android:layout_height="66dp"
-            android:layout_gravity="center_vertical|center"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="58dp"
-                android:layout_gravity="top|bottom|right|fill_horizontal|fill|clip_vertical|clip_horizontal|end"
-                android:layout_weight="1"
-                android:background="@drawable/ic_directions_black_24dp"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:onClick="navigation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
-
-
     </LinearLayout>
 
     <EditText
